@@ -10,8 +10,13 @@ function App() {
   const pokemonList = pokeArray.map(({id, name}) => {
     return (
       <React.Fragment key={id}>
-        <p>{id}</p>
-        <p>{name}</p>
+        <tr>
+          <td>{id}</td>
+          <td>{name}</td>
+          <td><input type="checkbox"></input></td>
+          <td><input type="checkbox"></input></td>
+          <td><input type="checkbox"></input></td>
+        </tr>
       </React.Fragment>
     )
   });
@@ -19,7 +24,22 @@ function App() {
   console.log(pokemonList);
 
   return (
-    pokemonList
+    <React.Fragment>
+      <table className="pokesLabTable">
+        <thead>
+          <tr>
+            <th>Number</th>
+            <th>Name</th>
+            <th>Shiny</th>
+            <th>Lucky</th>
+            <th>Purified</th>
+          </tr>
+        </thead>
+        <tbody>
+          {pokemonList}
+        </tbody>
+      </table>
+    </React.Fragment>
   );
 }
 
