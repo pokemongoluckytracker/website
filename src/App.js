@@ -1,27 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
+import Pokemon from './pokemon-released.json';
 
 function App() {
-  const request = require("request");
+  const [pokemon, setPokemon] = useState(Pokemon);
 
-  const options = {
-    method: 'GET',
-    url: 'https://pokemon-go1.p.rapidapi.com/pokemon_names.json',
-    headers: {
-      'x-rapidapi-host': 'pokemon-go1.p.rapidapi.com',
-      'x-rapidapi-key': 'bfc76afe43mshba4efe32e3298b5p1c9167jsn876ac0e50f92'
-    }
-  };
+  const pokeArray = Object.values(pokemon);
 
-  request(options, function (error, response, body) {
-    if (error) throw new Error(error);
-
-    console.log(body);
+  const pokemonList = pokeArray.map(({id, name}) => {
+    return (
+      <React.Fragment key={id}>
+        <p>{id}</p>
+        <p>{name}</p>
+      </React.Fragment>
+    )
   });
+  
+  console.log(pokemonList);
 
   return (
-    <div>BELLOW</div>
-  )
+    pokemonList
+  );
 }
 
 export default App;
